@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campo minato</title>
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="title">
+          <img src="img/boolean-logo.png" alt="" />
+          <h1>Campo Minato</h1>
+        </div>
+        <div>
+          <label for="difficulty">Difficoltà:</label>
+          <select class="challenge-selection" name="challenge-level" id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="hard">Hard</option>
+            <option value="lunatic">Lunatic</option>
+          </select>
+          <button class="play">Play</button>
+        </div>
+      </div>
+      <!-- /Header -->
+    </header>
+    <!-- Griglia -->
+    <main>
+      <div class="wrapper">
+        <div class="grid hidden"></div>
+      </div>
+    </main>
+    <!-- /Griglia -->
+    <footer>
+      <span class="credits"
+        >Made with &hearts; by <span class="agency">Boolean</span></span
+      >
+    </footer>
+    <!-- Script -->
+    <script src="js/script.js"></script>
+  </body>
+</html>

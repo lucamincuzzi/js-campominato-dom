@@ -1,0 +1,125 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CUSTOM */
+:root {
+  --header-height: 100px;
+  --footer-height: 50px;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+/* HEADER */
+
+header {
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  justify-content: center;
+}
+
+header .container {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+header img {
+  width: 80px;
+  height: 80px;
+}
+
+header .challenge-selection {
+  padding: 2px 100px 2px 0px;
+}
+
+header .challenge-selection,
+header .play {
+  border-radius: 5px;
+}
+
+header .play {
+  padding: 3px 25px;
+}
+
+/* MAIN */
+
+main {
+  width: 100%;
+  height: calc(100vh - (var(--header-height) + var(--footer-height)));
+}
+
+.wrapper {
+  background-color: aquamarine;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 80%;
+}
+
+.hidden {
+  display: none;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  aspect-ratio: 1;
+}
+
+.nCell-100 {
+  width: calc(100% / 10);
+}
+
+.nCell-81 {
+  width: calc(100% / 9);
+}
+
+.nCell-49 {
+  width: calc(100% / 7);
+}
+
+.aqua {
+  background-color: aqua;
+}
+
+/* FOOTER */
+
+footer {
+  height: var(--footer-height);
+  display: flex;
+  align-items: center;
+}
+
+.credits {
+  margin-left: 10px;
+}
+
+.agency {
+  color: purple;
+  text-decoration: underline;
+}
