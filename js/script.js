@@ -2,10 +2,9 @@
 const playButton = document.querySelector(".play");
 playButton.addEventListener("click", function() {
   const difficultyLevel = document.querySelector(".challenge-selection").value;
-  console.log(difficultyLevel);
-  let number = 0;
   // eseguo un controllo basato sulla difficoltà impostata nel select
   // cambio di conseguenza il numero parametro della funzione generatrice delle celle a seconda dell'esito
+  let number = 0;
   if (difficultyLevel === "easy") {
     number = 100;
   } else if (difficultyLevel === "hard") {
@@ -13,8 +12,6 @@ playButton.addEventListener("click", function() {
   } else {
     number = 49;
   }
-  // console log del numero risultante del controllo
-  console.log(number);
   // catturo l'elemento HTML della griglia
   const grid = document.querySelector(".grid");
   // lo rendo visibile in pagina
@@ -23,6 +20,11 @@ playButton.addEventListener("click", function() {
   grid.innerHTML = "";
   // genero e inserisco le celle mediante la funzione
   generateCells(number);
+  // creo l'array dei numeri delle celle che conterranno le bombe
+  bombs = generateBombs(number);
+  // stampo in console il riepilogo del codice di esecuzione
+  console.log("Difficoltà:", difficultyLevel, "|", "Celle da generare:", number);
+  console.log("Bombe:", bombs);
 })
 
 /******/
@@ -42,7 +44,7 @@ function generateCells(number) {
     // inserisco il numero in iterazione nella cella
     cell.innerHTML = i;
     // aggiungo l'event listener per colorare la cella
-    cell.addEventListener("click", whatNumber);
+    cell.addEventListener("click", gameOnOrOver);
     // aggiungo la cella creata nella griglia
     grid = document.querySelector(".grid");
     grid.append(cell);
@@ -51,13 +53,50 @@ function generateCells(number) {
 }
 
 /**
- * Funzione di callback che aggiunge la classe aqua e stampa in console il contenuto dell'elemento HTML
+ * Funzione per generare un array di numeri casuali che determineranno le celle contenenti le bombe
+ * @param {number} number
+ * @returns {array} bombsNums
+ */
+function generateBombs(number) {
+  const bombsNums = [];
+  while (bombsNums.length < 16) {
+    const rndNum = getRndInteger(1, number);
+    if(!bombsNums.includes(rndNum)) {
+      bombsNums.push(rndNum);
+    }
+  }
+  return bombsNums;
+}
+
+/**
+ * Funzione di callback che aggiunge la classe safe o bomb alla cella e stampa in console il contenuto dell'elemento HTML
  * @param {none}
  * @returns {none}
  */
-function whatNumber() {
-  // aggiungo la classe che colora la cella
-  this.classList.add("aqua");
-  // console log del numero contenuto nella cella
-  console.log(this.innerHTML);
+function gameOnOrOver() {
+  // confronto il numero della cella cliccata con l'array dei numeri delle bombe
+  let dangerLevel = "";
+  safeCells = [];
+  cells = document.querySelectorAll(".cell");
+  while(safeCells.length)
+  if (!bombs.includes(parseInt(this.textContent))) {
+    dangerLevel = "safe";
+    this.classList.add(dangerLevel);
+  } else {
+    dangerLevel = "bomb";
+    this.classList.add(dangerLevel);
+  }
+  // console log del numero contenuto nella cella e della classe aggiunta
+  console.log(this.innerHTML, "|", dangerLevel);
+}
+
+/**
+ * Funzione per ottenere un numero casuale da 1 a x in cui x è il numero delle celle generate per il gioco in base alla difficoltà selezionata
+ * @param {number} number
+ * @param {number} number
+ * @returns {number} rndNum
+ */
+function getRndInteger(number, number) {
+  const rndNum = Math.floor(Math.random() * number + 1);
+  return rndNum;
 }
